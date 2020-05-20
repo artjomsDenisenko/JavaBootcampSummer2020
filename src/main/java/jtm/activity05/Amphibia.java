@@ -20,6 +20,7 @@ public class Amphibia extends Transport {
             amphMove = super.getId() + " Amphibia is sailing on " + road.toString() +
                     " with " + sails + " sails";
         }else{
+        	super.move(road);
             amphMove = super.getId() + " Amphibia is driving on " + road.toString() +
                     " with " + wheels + " wheels";
         }
