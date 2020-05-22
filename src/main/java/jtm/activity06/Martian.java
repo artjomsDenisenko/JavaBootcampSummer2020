@@ -16,14 +16,16 @@ public class Martian implements Alien, Humanoid, Cloneable {
 
     @Override
     public void eat(Object item) {
-        contentOfstomach = item;
         if(item instanceof Human){
-            weight = weight + ((Human) item).getWeight();
-//            ((Human) item).isAlive = false;
+            contentOfstomach = ((Human) item).toString();
+        	stomachWeight = ((Human) item).getWeight();
+            weight += stomachWeight;
             ((Human) item).killHimself();
         }else if (item instanceof Martian) {
-            weight = weight + ((Martian) item).getWeight();
+            contentOfstomach = ((Martian) item).toString();
+        	stomachWeight = ((Martian) item).getWeight();
             ((Martian) item).killHimself();
+            weight += stomachWeight;
         }
     }
 
@@ -66,12 +68,21 @@ public class Martian implements Alien, Humanoid, Cloneable {
         return clone(this);
     }
 
-    private Object clone(Object clonedStomach) throws CloneNotSupportedException {
+    private Object clone(Object current) throws CloneNotSupportedException {
         // TODO implement cloning of current object
         // and its stomach
-    	Object x = super.clone();
-    	clonedStomach = this.contentOfstomach;
-    	return x;
+        Object clonedStomach = new Object();
+        clonedStomach.equals(contentOfstomach);
+        
+        Martian copy = new Martian();
+        copy.birthWeight = Alien.BirthWeight;
+        copy.contentOfstomach = clonedStomach;
+        copy.stomachWeight = this.stomachWeight;
+        copy.weight = birthWeight + stomachWeight;
+
+        return copy;
+  
+
     }
 
 
