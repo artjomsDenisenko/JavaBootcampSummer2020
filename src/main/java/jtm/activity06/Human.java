@@ -26,14 +26,15 @@ public class Human implements Humanoid {
 
     @Override
     public String isAlive() {
-        if (isAlive = true) return "Alive";
-        else return "Dead";
+        if (isAlive) {
+            return "Alive";
+        }
+        return "Dead";
     }
 
     @Override
     public String killHimself() {
         isAlive = false;
-//        isAlive();
         return "Dead";
     }
 

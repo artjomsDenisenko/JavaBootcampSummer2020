@@ -66,10 +66,12 @@ public class Martian implements Alien, Humanoid, Cloneable {
         return clone(this);
     }
 
-    private Object clone(Object current) throws CloneNotSupportedException {
+    private Object clone(Object clonedStomach) throws CloneNotSupportedException {
         // TODO implement cloning of current object
         // and its stomach
-        return super.clone();
+    	Object x = super.clone();
+    	clonedStomach = this.contentOfstomach;
+    	return x;
     }
 
 
