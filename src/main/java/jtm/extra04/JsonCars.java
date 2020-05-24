@@ -3,6 +3,9 @@ package jtm.extra04;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
+import org.json.*;
+
+import com.google.gson.Gson;
 
 
 public class JsonCars {
@@ -10,15 +13,24 @@ public class JsonCars {
 	/*- TODO #1
 	 * Implement method, which returns list of cars from generated JSON string
 	 */
-	public List<Car> getCars(String jsonString) {
+	public List<Car> getCars(String jsonString) throws JSONException{
 		/*- HINTS:
 		 * You will need to use:
 		 * - https://stleary.github.io/JSON-java/org/json/JSONObject.html
 		 * - https://stleary.github.io/JSON-java/org/json/JSONArray.html
 		 * You will need to initialize JSON array from "cars" key in JSON string
 		 */
-
-		return null;
+		List<Car> output = new ArrayList<>();     
+		JSONObject json = new JSONObject(jsonString);
+		JSONArray arr = json.getJSONArray("cars");
+		
+		if (arr != null) { 
+			   for (int i=0;i<arr.length();i++){ 
+				    JSONObject o = (JSONObject) arr.get(i);
+			        output.add(new Car(o.getString("model"), o.getInt("year"), o.getString("color"),o.getFloat("price")));
+			      } 
+		}
+			return output;
 	}
 
 	/*- TODO #2
