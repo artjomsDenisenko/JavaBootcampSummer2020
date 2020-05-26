@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.json.*;
 
-
 public class JsonCars {
 
 	/*- TODO #1
@@ -20,10 +19,17 @@ public class JsonCars {
 		 * You will need to initialize JSON array from "cars" key in JSON string
 		 */
 
+		List<Car> output = new ArrayList<>();
+		JSONObject json = new JSONObject(jsonString);
+		JSONArray arr = json.getJSONArray("cars");
+		for (int i = 0; i < arr.length(); i++) {
+			JSONObject jsonObj = arr.getJSONObject(i);
+			Car data = new Car(jsonObj.getString("model"), jsonObj.getInt("year"), jsonObj.getString("color"),
+					jsonObj.getFloat("price"));
+			output.add(data);
+		}
 
-
-
-		return null;
+		return output;
 	}
 
 	/*-  #2
@@ -42,7 +48,7 @@ public class JsonCars {
 		writer.object();
 		writer.key("cars");
 		writer.array();
-		for(Car car: cars) {
+		for (Car car : cars) {
 			writer.object();
 			writer.key("model").value(car.getModel());
 			writer.key("year").value(car.getYear());
@@ -52,7 +58,7 @@ public class JsonCars {
 		}
 		writer.endArray();
 		writer.endObject();
-		
+
 		return stringWriter.toString();
 	}
 
