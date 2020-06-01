@@ -1,5 +1,13 @@
 package jtm.activity09;
 
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+import java.util.Set;
+import java.util.TreeSet;
 
 /*- TODO #2
  * Implement Iterator interface with Orders class
@@ -29,7 +37,80 @@ package jtm.activity09;
  *  - ItemN: Customer1,Customer2: 4
  */
 
-public class Orders {
+public class Orders implements Iterator<Order> {
+	List<Order> itemsList = new LinkedList<Order>();
+	ListIterator<Order> elements = itemsList.listIterator();
+	int currentIndex = 1;
+
+	String customer; // Name of the customer
+	String name; // Name of the requested item
+	int count; // Count of the requested items
+
+	Order current = new Order(customer, name, count);
+
+	public Orders() {
+		itemsList = new LinkedList<Order>();
+	}
+
+	public void add(Order item) {
+		elements.add(item);
+	}
+
+	public List<Order> getItemsList() {
+		// TODO— List of all customer orders
+		return itemsList;
+	}
+
+	public Set<Order> getItemsSet() {
+		// TODO— calculated Set of Orders from list
+//		 * When implementing getItemsSet() method, join all requests for the same item from different customers
+//		 * in following way: if there are two requests:
+//		 *  - ItemN: Customer1: 3
+//		 *  - ItemN: Customer2: 1
+//		 *  Set of orders should be:
+//		 *  - ItemN: Customer1,Customer2: 4
+		HashSet<Order> res = new HashSet<Order>();
+		
+		return res;
+	}
+
+	public void sort() {
+//TODO   — sort list of orders according to the sorting rules
+		// Use built in List.sort() method to sort list of orders
+//		List.sort(elements);
+	}
+
+	public void remove() {
+//TODO — remove current Order (order got by previous next()) from list, throw IllegalStateException if can't
+		try {
+			elements.remove();
+		} catch (IllegalStateException e) {
+			throw e;
+		}
+	}
+
+	@Override
+	public boolean hasNext() {
+		while (elements.hasNext()) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public Order next() {
+		if (!elements.hasNext()) {
+			throw new NoSuchElementException();
+		} else {
+			return elements.next();
+		}
+	}
+
+	@Override
+	public String toString() {
+		return ".*" + itemsList.toString();
+	}
+
 	/*-
 	 * TODO #1
 	 * Create data structure to hold:

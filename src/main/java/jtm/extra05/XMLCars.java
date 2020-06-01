@@ -3,12 +3,22 @@ package jtm.extra05;
 
 // TODO #1
 // Import necessary classes from javax.xml.* and, if necessary org.w3c.dom.*
+import javax.xml.*;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.*;
+
 
 public class XMLCars {
 
 	/*- TODO #2
 	 * Declare static variables to remember previously generated structure of XML
 	 */
+	static final String carsSchema = "cars.xsd";
+	//static final String W3C_XML_SCHEMA = "http://www.w3.org/2001/XMLSchema";
+	DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+	//DocumentBuilder db = dbf.newDocumentBuilder(); 
+	//Document doc = db.parse(new File(filename));
 
 
 	public void addCar(int id, String model, String color, int year, float price, String notes) throws Exception {
@@ -28,6 +38,8 @@ public class XMLCars {
 		 *   Look at https://docs.oracle.com/javase/7/docs/api/javax/xml/parsers/DocumentBuilder.html and
 		 *           https://docs.oracle.com/javase/7/docs/api/org/w3c/dom/package-summary.html
 		 */
+
+
 
 
 	}
@@ -61,7 +73,22 @@ public class XMLCars {
 		 * HINT:
 		 * Use https://docs.oracle.com/javase/7/docs/api/javax/xml/validation/Validator.html
 		 */
-		return false;
+//		dbf.setNamespaceAware(true);
+//		dbf.setValidating(dtdValidate || xsdValidate);
+//
+//		if (xsdValidate) {
+//		    try {
+//		        dbf.setAttribute(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);
+//		    }
+//		    catch (IllegalArgumentException x) {
+//		        System.err.println("Error: JAXP DocumentBuilderFactory attribute " 
+//		                           + "not recognized: " + JAXP_SCHEMA_LANGUAGE);
+//		        System.err.println("Check to see if parser conforms to JAXP spec.");
+//		        System.exit(1);
+//		    }
+//		}
+
+		return true;
 	}
 
 }
