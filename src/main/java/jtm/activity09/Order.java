@@ -1,5 +1,7 @@
 package jtm.activity09;
 
+import java.util.Objects;
+
 /*-  #1
  * Implement Comparable interface with Order class
  * Hint! Use generic type of comparable items in form: Comparable<Order>
@@ -31,8 +33,8 @@ public class Order implements Comparable<Order> {
 	int count; // Count of the requested items
 
 	public Order(String orderer, String itemName, Integer count) {
-		customer = orderer;
-		name = itemName;
+		this.customer = orderer;
+		this.name = itemName;
 		this.count = count;
 	}
 
@@ -61,12 +63,7 @@ public class Order implements Comparable<Order> {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + count;
-		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
+		return Objects.hash(customer, name, count);
 	}
 
 	@Override
